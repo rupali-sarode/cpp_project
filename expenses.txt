@@ -1,0 +1,4 @@
+2 2026-10-24 Travel 80 Auto fare
+4 2026-10-25 Food 120 Dinner
+1 2026-10-24 Food 150 Lunch
+3 2026-10-25 Shopping 500 Clothes
