@@ -1,129 +1,73 @@
-# Personal Expense Tracker (C++)
+# Student Roll Number Search (C)
 
-A simple **console-based Expense Tracker** built in plain C++ — no UI, no database, no external libraries. You record daily expenses and use basic data structures and algorithms to analyze your spending.
+A simple **console-based program** written in C that reads student roll numbers into an array and searches for a given roll number using **linear search**.
 
 ## Features
 
 | # | Feature | Concept used |
 |---|---------|--------------|
-| 1 | Add Expense (amount, category, date, description) | `struct`, `vector`, input validation |
-| 2 | View All Expenses | `vector` traversal with loops |
-| 3 | Search by ID or Category | Linear search |
-| 4 | Sort by Amount (low → high) | Bubble sort written manually |
-| 5 | Spending Summary (total, average, highest, per-category) | Single-pass aggregation, `map` |
-| 6 | Save to `expenses.txt` + auto-load on startup | `ofstream` / `ifstream` |
-
-## Data Structures
-
-- `struct Expense` — one transaction record (id, date, category, amount, description)
-- `vector<Expense>` — stores all records
-- `map<string, double>` — category-wise totals in the summary
+| 1 | Read N roll numbers into an array | Arrays, `for` loop, `scanf` |
+| 2 | Input validation (1–100 students) | `if` condition check |
+| 3 | Display all roll numbers | Array traversal |
+| 4 | Search a roll number | **Linear search** |
+| 5 | Report found / not found with position | Flag variable + `break` |
 
 ## How to Build & Run
 
 ```bash
-g++ -std=c++17 -o expense_tracker expense_tracker.cpp
-./expense_tracker
+gcc -o student_search student_search.c
+./student_search
 ```
 
 ## How It Works
 
-The program shows a terminal menu in a loop. Choosing an option calls one function; option 7 exits. On startup, records are automatically loaded from `expenses.txt` if it exists; option 6 saves them back.
+1. The program asks for the number of students `n` and validates it (must be between 1 and 100, since the array size is 100).
+2. It reads `n` roll numbers into the array `a[100]`.
+3. It prints all the roll numbers entered.
+4. It asks for a roll number to search and scans the array from left to right.
+5. On the first match it prints **Student Found!** along with the **position** (1-based) and stops; otherwise it prints **Student Not Found!**.
+
+## Sample Results (Terminal Output)
+
+### Case 1: Roll number found
+
+Sample input: 5 students with roll numbers `101 102 103 104 105`, searching for `103`.
 
 ```
-===== EXPENSE TRACKER =====
-1. Add Expense
-2. View All Expenses
-3. Search Expense
-4. Sort Expenses
-5. Show Spending Summary
-6. Save Expenses
-7. Exit
-Enter your choice:
+Enter number of students: Enter roll numbers:
+Student Roll Numbers: 101 102 103 104 105
+Enter roll number to search: Student Found!
+Position: 3
 ```
 
-## Sample Results
+### Case 2: Roll number not found
 
-Sample data entered (4 transactions):
-
-| Date | Category | Amount | Description |
-|------|----------|--------|-------------|
-| 2026-10-24 | Food | Rs.150 | Lunch |
-| 2026-10-24 | Travel | Rs.80 | Auto fare |
-| 2026-10-25 | Shopping | Rs.500 | Clothes |
-| 2026-10-25 | Food | Rs.120 | Dinner |
-
-### View All Expenses (option 2)
+Sample input: same 5 roll numbers, searching for `999`.
 
 ```
-ID   Date        Category   Amount   Description
-1    2026-10-24  Food   Rs.150   Lunch
-2    2026-10-24  Travel   Rs.80   Auto fare
-3    2026-10-25  Shopping   Rs.500   Clothes
-4    2026-10-25  Food   Rs.120   Dinner
+Enter number of students: Enter roll numbers:
+Student Roll Numbers: 101 102 103 104 105
+Enter roll number to search: Student Not Found!
 ```
 
-### Spending Summary (option 5)
+### Case 3: Invalid number of students
+
+Sample input: `0` students.
 
 ```
-===== SPENDING SUMMARY =====
-Total Expenses:  Rs.850
-Transactions:    4
-Average Expense: Rs.212.5
-Highest Expense: Rs.500
-Category Breakdown:
-  Food: Rs.270
-  Shopping: Rs.500
-  Travel: Rs.80
-```
-
-### Sort by Amount (option 4)
-
-```
-Sorted by amount (lowest to highest).
-ID   Date        Category   Amount   Description
-2    2026-10-24  Travel   Rs.80   Auto fare
-4    2026-10-25  Food   Rs.120   Dinner
-1    2026-10-24  Food   Rs.150   Lunch
-3    2026-10-25  Shopping   Rs.500   Clothes
-```
-
-### Search (option 3)
-
-```
-Search by 1) ID  2) Category : 1
-Enter ID: 3
-Found: 2026-10-25 Shopping Rs.500
-```
-
-```
-Search by 1) ID  2) Category : 2
-Enter category: Food
-Found: [ID 4] 2026-10-25 Rs.120 Dinner
-Found: [ID 1] 2026-10-24 Rs.150 Lunch
-```
-
-### Saved File (`expenses.txt`, option 6)
-
-```
-2 2026-10-24 Travel 80 Auto fare
-4 2026-10-25 Food 120 Dinner
-1 2026-10-24 Food 150 Lunch
-3 2026-10-25 Shopping 500 Clothes
+Enter number of students: Invalid number of students!
 ```
 
 ## Time Complexity
 
 | Operation | Algorithm | Complexity |
 |-----------|-----------|------------|
-| Find expense by ID/category | Linear search | O(n) |
-| Sort by amount | Bubble sort | O(n²) |
-| Find highest expense | Single traversal | O(n) |
-| Category totals | Map aggregation | O(n log n)* |
+| Read & display roll numbers | Array traversal | O(n) |
+| Search by roll number | Linear search | O(n) |
 
-*Average O(n) with a hash map (`unordered_map`); a `map` is used here for sorted category output.
+**Space complexity:** O(n) for the array (fixed maximum size of 100).
 
 ## Project Files
 
-- `expense_tracker.cpp` — complete source (single file)
+- `student_search.c` — complete source (single file)
 - `README.md` — this documentation
