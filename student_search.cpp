@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main() {
@@ -17,7 +18,10 @@ int main() {
         cin >> a[i];
     }
 
-    cout << "Student Roll Numbers: ";
+    // Sort the array for binary search
+    sort(a, a + n);
+
+    cout << "Student Roll Numbers (sorted): ";
     for (i = 0; i < n; i++) {
         cout << a[i] << " ";
     }
@@ -25,12 +29,19 @@ int main() {
     cout << "\nEnter roll number to search: ";
     cin >> key;
 
-    for (i = 0; i < n; i++) {
-        if (a[i] == key) {
+    // Binary search
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (a[mid] == key) {
             cout << "Student Found!" << endl;
-            cout << "Position: " << i + 1 << endl;
+            cout << "Position: " << mid + 1 << " (in sorted array)" << endl;
             found = 1;
             break;
+        } else if (a[mid] < key) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
         }
     }
 
