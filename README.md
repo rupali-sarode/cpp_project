@@ -1,12 +1,12 @@
-# Student Roll Number Search (C)
+# Student Roll Number Search (C++)
 
-A simple **console-based program** written in C that reads student roll numbers into an array and searches for a given roll number using **linear search**.
+A simple **console-based program** built in plain C++ that reads student roll numbers into an array and searches for a given roll number using **linear search**.
 
 ## Features
 
 | # | Feature | Concept used |
 |---|---------|--------------|
-| 1 | Read N roll numbers into an array | Arrays, `for` loop, `scanf` |
+| 1 | Read N roll numbers into an array | Arrays, `for` loop, `cin` |
 | 2 | Input validation (1–100 students) | `if` condition check |
 | 3 | Display all roll numbers | Array traversal |
 | 4 | Search a roll number | **Linear search** |
@@ -15,7 +15,7 @@ A simple **console-based program** written in C that reads student roll numbers 
 ## How to Build & Run
 
 ```bash
-gcc -o student_search student_search.c
+g++ -std=c++17 -o student_search student_search.cpp
 ./student_search
 ```
 
@@ -69,5 +69,5 @@ Enter number of students: Invalid number of students!
 
 ## Project Files
 
-- `student_search.c` — complete source (single file)
+- `student_search.cpp` — complete source (single file)
 - `README.md` — this documentation
